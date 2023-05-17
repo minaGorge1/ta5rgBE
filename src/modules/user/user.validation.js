@@ -16,7 +16,7 @@ export const userCoverPiC= joi.object({
 })
 
 export const updatePassword =  joi.object({
-        _id:generalFields.id,
+        _id: generalFields.id,
         oldPassword: generalFields.password,
         newPassword: generalFields.password.invalid(joi.ref("oldPassword")),
         cPassword: generalFields.cPassword.valid(joi.ref("newPassword"))
