@@ -13,17 +13,8 @@ authRouter.get("/test", authController.test)
 //signup
 authRouter.post("/sign_up", validation(validators.signUpSchema), authController.signUp)
 
-//confirmEmail
-/* authRouter.get("/confirmEmail/:token", authController.confirmEmail) */
-
-//requestNewEmail
-/* authRouter.get("/requestNewEmail/:rFToken", authController.requestNewEmail) */
-
 //signIn
 authRouter.post("/sign_in", validation(validators.logInSchema), authController.signIn)
-
-//forGotPass
-authRouter.get("/forGotPass/",validation(validators.forGotPassword), authController.forGotPass)
 
 //GotNewPass
 authRouter.post("/GotNewPass/:token", validation(validators.GotNewPass), authController.GotNewPass)
