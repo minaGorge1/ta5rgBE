@@ -1,5 +1,4 @@
 import userModel from "../../../../DB/model/User.model.js"
-import sendEmail from "../../../utils/email.js"
 import { asyncHandler } from "../../../utils/errorHandling.js"
 import { createToken, verifyToken } from "../../../utils/generateAndVerifyToken.js"
 import { compare, hash } from "../../../utils/hashAndCompare.js"
@@ -21,19 +20,7 @@ export const signUp = asyncHandler(async (req, res, next) => {
     }
 
 
-    //confirmEmail
-    const token = createToken({ payload: { email }, expiresIn: 60 * 5 })
-    const link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`
-
-    const rFToken = createToken({ payload: { email }, expiresIn: 60 * 60 * 24 * 30 })
-    const rfLink = `${req.protocol}://${req.headers.host}/auth/requestNewEmail/${rFToken}`
-
-    const html = `<a href="${link}">Click me to confirm Email</a> <br> <br> <br>
-    <a href="${rfLink}">Request new email</a>`
-
-    if (! await sendEmail({ to: email, subject: "confirm_Email", html })) {
-        return next(new Error("Email rejected", { cause: 400 }))
-    }
+    
 
     //hashPassword
     const hashPassword = hash({ plaintext: password, saltRound: parseInt(process.env.SALTROUND) })
@@ -65,26 +52,6 @@ const _id = user.id
      */return res.status(200).json({ message: "Done", _id })
 })
 
-//forGot password
-export const forGotPass = asyncHandler(async (req, res, next) => {
-    const { email } = req.body
-    const user = await userModel.findOne({ email })
-    if (!user) {
-        return res.status(404).json("In-valid Email")
-    }
-    //take email
-    const token = createToken({ payload: { email }, expiresIn: 60 * 100000 })
-    const link = `http://localhost:5000/auth/GotNewPass/${token}`
-    const html = `<a href="${link}">Click me to confirm Email to make new pass</a>`
-    //send confirm to gmail
-    if (! await sendEmail({ to: email, subject: "forGetPass", html })) {
-        return next(new Error("Email rejected", { cause: 400 }))
-    }
-    return res.status(200).json("done please check your email")
-    //update new pass
-    //login
-
-})
 
 //updata password
 export const GotNewPass = asyncHandler(async (req, res, next) => {
