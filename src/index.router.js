@@ -11,7 +11,7 @@ const initApp = (app, express) => {
     app.use(cors())
     
     app.use(express.json({}))
-    app.get("/", (req, res) =>{ return res.static(200).send(`Done`)} )
+    app.get("/", (req, res, next) =>{ return res.static(200).json({ message: "home" })} )
 
     app.get("/", (req, res, next) => {
         res.json("home")
