@@ -16,9 +16,6 @@ authRouter.post("/sign_up", validation(validators.signUpSchema), authController.
 //signIn
 authRouter.post("/sign_in", validation(validators.logInSchema), authController.signIn)
 
-//GotNewPass
-authRouter.post("/GotNewPass/:token", validation(validators.GotNewPass), authController.GotNewPass)
-
 //logOut
 authRouter.post("/log_out", auth, authController.logOut)
 

@@ -1,6 +1,5 @@
 import userModel from "../../../../DB/model/User.model.js"
 import { asyncHandler } from "../../../utils/errorHandling.js"
-import { createToken, verifyToken } from "../../../utils/generateAndVerifyToken.js"
 import { compare, hash } from "../../../utils/hashAndCompare.js"
 
 
@@ -52,23 +51,6 @@ const _id = user.id
      */return res.status(200).json({ message: "Done", _id })
 })
 
-
-//updata password
-export const GotNewPass = asyncHandler(async (req, res, next) => {
-
-    const { token } = req.params
-    const decoded = verifyToken({ token })
-    console.log(decoded);
-    const { newPassword } = req.body
-
-    const hashPassword = hash({ plaintext: newPassword })
-
-    const user = await userModel.findOneAndUpdate({ email: decoded.email }, { password: hashPassword, status: "offline" })
-    if (!user) {
-        return next(new Error("In-Valid account", { cause: 404 }))
-    }
-    return res.status(200).json({ message: "Done" })/* redirect("https://chat.openai.com/auth/login") */
-})
 
 //logOut
 export const logOut = asyncHandler(async (req, res, next) => {
