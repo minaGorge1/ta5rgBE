@@ -1,5 +1,6 @@
 import userModel from "../../../../DB/model/User.model.js"
 import { asyncHandler } from "../../../utils/errorHandling.js"
+import { createToken } from "../../../utils/generateAndVerifyToken.js"
 import { compare, hash } from "../../../utils/hashAndCompare.js"
 
 
