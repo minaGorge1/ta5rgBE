@@ -48,7 +48,7 @@ export const signIn = asyncHandler(async (req, res, next) => {
 const _id = user.id
     const status = await userModel.findOneAndUpdate(email, { status: "online" }, { new: true })
      const token = createToken({ payload: { id: user._id, userName: user.userName, email: user.email }, expiresIn: 60 * 60 * 24 })
-     return res.status(200).json({ message: "Done", _id ,token })
+     return res.status(200).json({ message: "Done", _id ,token : token })
 })
 
 
