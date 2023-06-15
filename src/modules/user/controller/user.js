@@ -1,4 +1,4 @@
-import postModel from "../../../../DB/model/Post.model.js";
+
 import userModel from "../../../../DB/model/User.model.js";
 import { asyncHandler } from "../../../utils/errorHandling.js";
 import { compare, hash } from "../../../utils/hashAndCompare.js";
@@ -51,12 +51,7 @@ export const updatePassword = asyncHandler(async (req, res, next) => {
     return res.status(200).json({ message: "Done" })
 })
 
-//userPosts
-export const userPosts = asyncHandler(async (req, res, next) => {
-    const myPost = await postModel.find({ createdBy: req.user._id })
-    return myPost ? res.json({ message: "Done", myPost })
-        : next(new Error("Not found posts"))
-}) 
+
 
 
 //userPirPic

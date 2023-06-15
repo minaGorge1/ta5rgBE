@@ -18,8 +18,6 @@ userRouter.delete("/softDelete", auth, userController.softDeleteUser)
 userRouter.post("/userProfile", auth, userController.userProfile)
 //update pass
 userRouter.post("/updateProfile",validation(validators.updatePassword), auth, userController.updatePassword)
-//userPosts
-userRouter.post("/userPosts", auth, userController.userPosts) 
 //userPirPic
 userRouter.post("/userPirPic",auth,validation(validators.userPirPic) ,fileUpload(fileValidation.image).single("image"), userController.userPirPic)
 //userCoverPiC
