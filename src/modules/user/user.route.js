@@ -14,9 +14,9 @@ userRouter.patch("/update", auth ,validation(validators.updateUser), userControl
 userRouter.delete("/delete", auth, userController.deleteUser)
 //soft delete user
 userRouter.delete("/softDelete", auth, userController.softDeleteUser)
-//get profile of user*
+//get profile of user
 userRouter.post("/userProfile", auth, userController.userProfile)
-//update pass*
+//update pass
 userRouter.post("/updateProfile",validation(validators.updatePassword), auth, userController.updatePassword)
 //userPosts
 userRouter.post("/userPosts", auth, userController.userPosts) 

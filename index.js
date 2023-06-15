@@ -10,7 +10,6 @@ initApp(app, express)
 
 
 
-
 app.listen(port, () => {
     console.log("server is running ...... ")
 })

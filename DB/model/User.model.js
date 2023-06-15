@@ -1,6 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
 
-/* (userName,phone,email,password,cpassword,status) */
 
 const userSchema = new Schema({
     profilePic: Object,

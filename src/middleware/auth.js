@@ -18,7 +18,7 @@ export const auth = async (req, res, next) => {
             return next(new Error("In-valid payload"))
         } */
         //redirect
-        const user = await userModel.findById(req.body._id) //decoded.id
+        const user = await userModel.findById(_id) //decoded.id
         if (!user) {
             return next(new Error("not retested account"))
         }
