@@ -14,7 +14,7 @@ export const test = asyncHandler((req, res, next) => {
 
 //signUp
 export const signUp = asyncHandler(async (req, res, next) => {
-console.log(req.body);
+    console.log(req.body);
     const { userName, email, phone, password } = req.body
     if (await userModel.findOne({ email })) {
         return next(new Error("Email Exist", { cause: 409 }))
@@ -87,10 +87,10 @@ export const signIn = asyncHandler(async (req, res, next) => {
     if (!match) {
         return next(new Error("In-Valid password", { cause: 400 }))
     }
-const _id = user.id
+    const _id = user.id
     const status = await userModel.findOneAndUpdate(email, { status: "online" }, { new: true })
     const token = createToken({ payload: { id: user._id, userName: user.userName, email: user.email }, expiresIn: 60 * 60 * 24 })
-    return res.status(200).json({ message: "Done", _id })
+    return res.status(200).json({ message: "Done", _id, token })
 })
 
 //forGot password
