@@ -5,8 +5,8 @@ export const signUpSchema =  joi.object({
         userName: joi.string().max(20).required().alphanum(),
         phone: joi.string().required(),
         email: generalFields.email,
-        password: generalFields.password,
-        cPassword: generalFields.cPassword.valid(joi.ref('password'))
+        password: joi.string().required(),
+        cPassword: joi.string().required().valid(joi.ref('password'))
     }).required()
 
 
