@@ -13,7 +13,7 @@ export const signUpSchema =  joi.object({
 
 export const logInSchema = joi.object({
         email: generalFields.email,
-        password: generalFields.password
+        password: joi.string().required(),
     }).required()
 
     export const forGotPassword = joi.object({
